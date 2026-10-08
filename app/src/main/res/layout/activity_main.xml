@@ -15,6 +15,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/totalText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -30,11 +31,20 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/expensesText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="No expenses yet."
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/categoryTotalsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="By Category"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/addExpenseButton"
