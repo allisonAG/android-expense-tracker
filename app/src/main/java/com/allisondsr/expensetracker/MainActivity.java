@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import android.widget.LinearLayout;
+import androidx.appcompat.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +20,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Expense> expenses = new ArrayList<>();
-    private TextView expensesText;
+    private LinearLayout expensesContainer;
     private TextView totalText;
     private TextView categoryTotalsText;
 
@@ -28,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button addExpenseButton = findViewById(R.id.addExpenseButton);
-        expensesText = findViewById(R.id.expensesText);
+        expensesContainer = findViewById(R.id.expensesContainer);
         totalText = findViewById(R.id.totalText);
         categoryTotalsText = findViewById(R.id.categoryTotalsText);
+
 
         loadExpenses();
         displayExpenses();
@@ -70,22 +73,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayExpenses() {
-        StringBuilder text = new StringBuilder();
+        expensesContainer.removeAllViews();
 
-        for (Expense expense : expenses) {
-            text.append(expense.getDescription())
-                    .append(" - $")
-                    .append(expense.getAmount())
-                    .append("\n")
-                    .append("Date: ")
-                    .append(expense.getDate())
-                    .append("\n")
-                    .append("Category: ")
-                    .append(expense.getCategory())
-                    .append("\n\n");
+        for (int i = 0; i < expenses.size(); i++) {
+            Expense expense = expenses.get(i);
+
+            TextView expenseText = new TextView(this);
+
+            expenseText.setText(
+                    expense.getDescription()
+                            + " - $"
+                            + String.format("%.2f", expense.getAmount())
+                            + "\nDate: "
+                            + expense.getDate()
+                            + "\nCategory: "
+                            + expense.getCategory()
+            );
+
+            expenseText.setTextSize(16);
+            expenseText.setPadding(0, 16, 0, 16);
+
+            expenseText.setOnClickListener(v -> {
+                new AlertDialog.Builder(this)
+                        .setTitle("Delete Expense")
+                        .setMessage("Are you sure you want to delete this expense?")
+                        .setPositiveButton("Delete", (dialog, which) -> {
+                            expenses.remove(expense);
+
+                            saveExpenses();
+                            displayExpenses();
+                            updateTotal();
+                            updateCategoryTotals();
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+            });
+
+
+            expensesContainer.addView(expenseText);
         }
-
-        expensesText.setText(text.toString());
     }
 
     private void updateTotal() {
