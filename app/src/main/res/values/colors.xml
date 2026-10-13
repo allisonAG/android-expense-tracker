@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="rose_primary">#A56B78</color>
+    <color name="rose_light">#E8CDD2</color>
+    <color name="background_cream">#F8F5F3</color>
+    <color name="card_white">#FFFFFF</color>
+    <color name="charcoal">#302C2D</color>
+    <color name="charcoal_light">#454043</color>
+    <color name="text_charcoal">#302C2D</color>
+    <color name="text_muted">#82777A</color>
 </resources>
