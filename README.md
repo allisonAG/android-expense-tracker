@@ -10,7 +10,7 @@ The application uses local file storage to preserve expenses on the device, even
 
 The purpose of this project was to strengthen my skills in Java and Android development while learning how to build a functional mobile application. Through this project, I practiced working with multiple Android activities, user input, event handling, data structures, local file storage, data validation, and user interface design.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/TJE2CXKpnu0)
 
 # Development Environment
 
